@@ -2,8 +2,9 @@
 	import Navbar from '$lib/components/navbar/navbar.svelte';
 	import ChartPanel from '$lib/components/dashboard/ChartPanel.svelte';
 	import StatisticPanel from '$lib/components/dashboard/StatisticPanel.svelte';
-
-	
+	import NewProduct from '$lib/components/dashboard/NewProduct.svelte';
+	import UsersPanel from '$lib/components/dashboard/UsersPanel.svelte';
+	import UsersPanelHori from '$lib/components/dashboard/UsersPanelHori.svelte';
 </script>
 
 <Navbar />
@@ -20,10 +21,9 @@
 	</section>
 
 	<section class="bottom-section">
-		<!-- Aquí irán los demás paneles -->
-		<div class="card">Panel 1</div>
-		<div class="card">Panel 2</div>
-		<div class="card">Panel 3</div>
+		<NewProduct />
+		<UsersPanel />
+		<UsersPanelHori />
 	</section>
 </main>
 
@@ -59,7 +59,6 @@
 	.bottom-section {
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-		gap: 1.5rem;
 	}
 
 	.card {
@@ -72,15 +71,32 @@
 		font-weight: 500;
 	}
 
+	@media (max-width: 1440px) {
+		.bottom-section {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.bottom-section .card:last-child {
+            grid-column: 1 / -1;
+        }
+	}
+
 	@media (max-width: 1024px) {
 		.top-section {
+			grid-template-columns: 1fr;
+		}
+
+		.bottom-section {
 			grid-template-columns: 1fr;
 		}
 	}
 
 	@media (max-width: 768px) {
+
+
 		main.dashboard {
 			padding: 1rem;
+			margin-top: 64px;
 		}
 	}
 </style>
